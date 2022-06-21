@@ -70,7 +70,10 @@ public class TemporalClient {
 
   private static final int MAXIMUM_SEARCH_PAGE_SIZE = 50;
 
-  public static TemporalClient production(final String temporalHost, final Path workspaceRoot, final Configs configs, final StreamResetPersistence streamResetPersistence) {
+  public static TemporalClient production(final String temporalHost,
+                                          final Path workspaceRoot,
+                                          final Configs configs,
+                                          final StreamResetPersistence streamResetPersistence) {
     final WorkflowServiceStubs temporalService = TemporalUtils.createTemporalService(temporalHost);
     return new TemporalClient(WorkflowClient.newInstance(temporalService), workspaceRoot, temporalService, configs, streamResetPersistence);
   }
@@ -78,10 +81,10 @@ public class TemporalClient {
   // todo (cgardens) - there are two sources of truth on workspace root. we need to get this down to
   // one. either temporal decides and can report it or it is injected into temporal runs.
   public TemporalClient(final WorkflowClient client,
-      final Path workspaceRoot,
-      final WorkflowServiceStubs workflowServiceStubs,
-      final Configs configs,
-      final StreamResetPersistence streamResetPersistence) {
+                        final Path workspaceRoot,
+                        final WorkflowServiceStubs workflowServiceStubs,
+                        final Configs configs,
+                        final StreamResetPersistence streamResetPersistence) {
     this.client = client;
     this.workspaceRoot = workspaceRoot;
     this.service = workflowServiceStubs;

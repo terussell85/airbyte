@@ -196,7 +196,8 @@ public class ServerApp implements ServerRunnable {
 
     final StreamResetPersistence streamResetPersistence = new StreamResetPersistence(configsDatabase);
 
-    final TemporalClient temporalClient = TemporalClient.production(configs.getTemporalHost(), configs.getWorkspaceRoot(), configs, streamResetPersistence);
+    final TemporalClient temporalClient =
+        TemporalClient.production(configs.getTemporalHost(), configs.getWorkspaceRoot(), configs, streamResetPersistence);
     final OAuthConfigSupplier oAuthConfigSupplier = new OAuthConfigSupplier(configRepository, trackingClient);
     final DefaultSynchronousSchedulerClient syncSchedulerClient =
         new DefaultSynchronousSchedulerClient(temporalClient, jobTracker, oAuthConfigSupplier);
