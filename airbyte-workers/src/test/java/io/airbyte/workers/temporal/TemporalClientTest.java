@@ -105,7 +105,7 @@ class TemporalClientTest {
     workflowServiceBlockingStub = mock(WorkflowServiceBlockingStub.class);
     when(workflowServiceStubs.blockingStub()).thenReturn(workflowServiceBlockingStub);
     mockWorkflowStatus(WorkflowExecutionStatus.WORKFLOW_EXECUTION_STATUS_RUNNING);
-    temporalClient = spy(new TemporalClient(workflowClient, workspaceRoot, workflowServiceStubs, configs));
+    temporalClient = spy(new TemporalClient(workflowClient, workspaceRoot, workflowServiceStubs, configs, streamResetPersistence));
   }
 
   @Nested

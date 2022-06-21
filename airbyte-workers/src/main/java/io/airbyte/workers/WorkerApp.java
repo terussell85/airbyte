@@ -415,7 +415,9 @@ public class WorkerApp {
         configRepository,
         new OAuthConfigSupplier(configRepository, trackingClient));
 
-    final TemporalClient temporalClient = TemporalClient.production(temporalHost, workspaceRoot, configs);
+    final StreamResetPersistence streamResetPersistence = new StreamResetPersistence(configDatabase);
+
+    final TemporalClient temporalClient = TemporalClient.production(temporalHost, workspaceRoot, configs, streamResetPersistence);
 
     final TemporalWorkerRunFactory temporalWorkerRunFactory = new TemporalWorkerRunFactory(
         temporalClient,
@@ -439,7 +441,6 @@ public class WorkerApp {
 
     final JobTracker jobTracker = new JobTracker(configRepository, jobPersistence, trackingClient);
 
-    final StreamResetPersistence streamResetPersistence = new StreamResetPersistence(configDatabase);
 
     new WorkerApp(
         workspaceRoot,
